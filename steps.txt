@@ -1,0 +1,9 @@
+* run flutter build apk in example
+* set JavaSDK version to 21 sudo update-alternatives --config java
+* Copy jnigen.yaml file and make changes according to your requirement
+* Place this block
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11.toString()
+    }
+
+    in android/build.gradle of Plugin
