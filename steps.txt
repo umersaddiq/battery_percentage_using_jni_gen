@@ -8,3 +8,5 @@
     }
 
     in android/build.gradle of Plugin
+
+Important Note : You need to make apk each and every time you make any change in kotlin code file

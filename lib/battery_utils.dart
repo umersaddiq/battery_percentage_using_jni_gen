@@ -85,6 +85,99 @@ class BatteryUtils extends jni$_.JObject {
     );
   }
 
+  static final _id_sum = _class.instanceMethodId(r'sum', r'(II)I');
+
+  static final _sum =
+      jni$_.ProtectedJniExtensions.lookup<
+            jni$_.NativeFunction<
+              jni$_.JniResult Function(
+                jni$_.Pointer<jni$_.Void>,
+                jni$_.JMethodIDPtr,
+                jni$_.VarArgs<(jni$_.Int32, jni$_.Int32)>,
+              )
+            >
+          >('globalEnv_CallIntMethod')
+          .asFunction<
+            jni$_.JniResult Function(
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr,
+              int,
+              int,
+            )
+          >();
+
+  /// from: `public final int sum(int i, int i1)`
+  int sum(int i, int i1) {
+    return _sum(
+      reference.pointer,
+      _id_sum as jni$_.JMethodIDPtr,
+      i,
+      i1,
+    ).integer;
+  }
+
+  static final _id_stopBatteryPercentageStream = _class.instanceMethodId(
+    r'stopBatteryPercentageStream',
+    r'()V',
+  );
+
+  static final _stopBatteryPercentageStream =
+      jni$_.ProtectedJniExtensions.lookup<
+            jni$_.NativeFunction<
+              jni$_.JThrowablePtr Function(
+                jni$_.Pointer<jni$_.Void>,
+                jni$_.JMethodIDPtr,
+              )
+            >
+          >('globalEnv_CallVoidMethod')
+          .asFunction<
+            jni$_.JThrowablePtr Function(
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr,
+            )
+          >();
+
+  /// from: `public final void stopBatteryPercentageStream()`
+  void stopBatteryPercentageStream() {
+    _stopBatteryPercentageStream(
+      reference.pointer,
+      _id_stopBatteryPercentageStream as jni$_.JMethodIDPtr,
+    ).check();
+  }
+
+  static final _id_startBatteryPercentageStream = _class.instanceMethodId(
+    r'startBatteryPercentageStream',
+    r'(LBatteryCallback;)V',
+  );
+
+  static final _startBatteryPercentageStream =
+      jni$_.ProtectedJniExtensions.lookup<
+            jni$_.NativeFunction<
+              jni$_.JThrowablePtr Function(
+                jni$_.Pointer<jni$_.Void>,
+                jni$_.JMethodIDPtr,
+                jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>,
+              )
+            >
+          >('globalEnv_CallVoidMethod')
+          .asFunction<
+            jni$_.JThrowablePtr Function(
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr,
+              jni$_.Pointer<jni$_.Void>,
+            )
+          >();
+
+  /// from: `public final void startBatteryPercentageStream(BatteryCallback batteryCallback)`
+  void startBatteryPercentageStream(BatteryCallback batteryCallback) {
+    final _$batteryCallback = batteryCallback.reference;
+    _startBatteryPercentageStream(
+      reference.pointer,
+      _id_startBatteryPercentageStream as jni$_.JMethodIDPtr,
+      _$batteryCallback.pointer,
+    ).check();
+  }
+
   static final _id_getBatteryPercentage = _class.instanceMethodId(
     r'getBatteryPercentage',
     r'()I',
@@ -210,5 +303,218 @@ final class $BatteryUtils$Type extends jni$_.JObjType<BatteryUtils> {
   bool operator ==(Object other) {
     return other.runtimeType == ($BatteryUtils$Type) &&
         other is $BatteryUtils$Type;
+  }
+}
+
+/// from: `BatteryCallback`
+class BatteryCallback extends jni$_.JObject {
+  @jni$_.internal
+  @core$_.override
+  final jni$_.JObjType<BatteryCallback> $type;
+
+  @jni$_.internal
+  BatteryCallback.fromReference(jni$_.JReference reference)
+    : $type = type,
+      super.fromReference(reference);
+
+  static final _class = jni$_.JClass.forName(r'BatteryCallback');
+
+  /// The type which includes information such as the signature of this class.
+  static const nullableType = $BatteryCallback$NullableType();
+  static const type = $BatteryCallback$Type();
+  static final _id_onBatteryPercentageChanged = _class.instanceMethodId(
+    r'onBatteryPercentageChanged',
+    r'(I)V',
+  );
+
+  static final _onBatteryPercentageChanged =
+      jni$_.ProtectedJniExtensions.lookup<
+            jni$_.NativeFunction<
+              jni$_.JThrowablePtr Function(
+                jni$_.Pointer<jni$_.Void>,
+                jni$_.JMethodIDPtr,
+                jni$_.VarArgs<(jni$_.Int32,)>,
+              )
+            >
+          >('globalEnv_CallVoidMethod')
+          .asFunction<
+            jni$_.JThrowablePtr Function(
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr,
+              int,
+            )
+          >();
+
+  /// from: `public abstract void onBatteryPercentageChanged(int i)`
+  void onBatteryPercentageChanged(int i) {
+    _onBatteryPercentageChanged(
+      reference.pointer,
+      _id_onBatteryPercentageChanged as jni$_.JMethodIDPtr,
+      i,
+    ).check();
+  }
+
+  /// Maps a specific port to the implemented interface.
+  static final core$_.Map<int, $BatteryCallback> _$impls = {};
+  static jni$_.JObjectPtr _$invoke(
+    int port,
+    jni$_.JObjectPtr descriptor,
+    jni$_.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      jni$_.MethodInvocation.fromAddresses(0, descriptor.address, args.address),
+    );
+  }
+
+  static final jni$_.Pointer<
+    jni$_.NativeFunction<
+      jni$_.JObjectPtr Function(jni$_.Int64, jni$_.JObjectPtr, jni$_.JObjectPtr)
+    >
+  >
+  _$invokePointer = jni$_.Pointer.fromFunction(_$invoke);
+
+  static jni$_.Pointer<jni$_.Void> _$invokeMethod(
+    int $p,
+    jni$_.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+      if ($d == r'onBatteryPercentageChanged(I)V') {
+        _$impls[$p]!.onBatteryPercentageChanged(
+          $a![0]!
+              .as(const jni$_.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return jni$_.nullptr;
+      }
+    } catch (e) {
+      return jni$_.ProtectedJniExtensions.newDartException(e);
+    }
+    return jni$_.nullptr;
+  }
+
+  static void implementIn(
+    jni$_.JImplementer implementer,
+    $BatteryCallback $impl,
+  ) {
+    late final jni$_.RawReceivePort $p;
+    $p = jni$_.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = jni$_.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      jni$_.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(r'BatteryCallback', $p, _$invokePointer, [
+      if ($impl.onBatteryPercentageChanged$async)
+        r'onBatteryPercentageChanged(I)V',
+    ]);
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory BatteryCallback.implement($BatteryCallback $impl) {
+    final $i = jni$_.JImplementer();
+    implementIn($i, $impl);
+    return BatteryCallback.fromReference($i.implementReference());
+  }
+}
+
+abstract base mixin class $BatteryCallback {
+  factory $BatteryCallback({
+    required void Function(int i) onBatteryPercentageChanged,
+    bool onBatteryPercentageChanged$async,
+  }) = _$BatteryCallback;
+
+  void onBatteryPercentageChanged(int i);
+  bool get onBatteryPercentageChanged$async => false;
+}
+
+final class _$BatteryCallback with $BatteryCallback {
+  _$BatteryCallback({
+    required void Function(int i) onBatteryPercentageChanged,
+    this.onBatteryPercentageChanged$async = false,
+  }) : _onBatteryPercentageChanged = onBatteryPercentageChanged;
+
+  final void Function(int i) _onBatteryPercentageChanged;
+  final bool onBatteryPercentageChanged$async;
+
+  void onBatteryPercentageChanged(int i) {
+    return _onBatteryPercentageChanged(i);
+  }
+}
+
+final class $BatteryCallback$NullableType
+    extends jni$_.JObjType<BatteryCallback?> {
+  @jni$_.internal
+  const $BatteryCallback$NullableType();
+
+  @jni$_.internal
+  @core$_.override
+  String get signature => r'LBatteryCallback;';
+
+  @jni$_.internal
+  @core$_.override
+  BatteryCallback? fromReference(jni$_.JReference reference) =>
+      reference.isNull ? null : BatteryCallback.fromReference(reference);
+  @jni$_.internal
+  @core$_.override
+  jni$_.JObjType get superType => const jni$_.JObjectType();
+
+  @jni$_.internal
+  @core$_.override
+  jni$_.JObjType<BatteryCallback?> get nullableType => this;
+
+  @jni$_.internal
+  @core$_.override
+  final superCount = 1;
+
+  @core$_.override
+  int get hashCode => ($BatteryCallback$NullableType).hashCode;
+
+  @core$_.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($BatteryCallback$NullableType) &&
+        other is $BatteryCallback$NullableType;
+  }
+}
+
+final class $BatteryCallback$Type extends jni$_.JObjType<BatteryCallback> {
+  @jni$_.internal
+  const $BatteryCallback$Type();
+
+  @jni$_.internal
+  @core$_.override
+  String get signature => r'LBatteryCallback;';
+
+  @jni$_.internal
+  @core$_.override
+  BatteryCallback fromReference(jni$_.JReference reference) =>
+      BatteryCallback.fromReference(reference);
+  @jni$_.internal
+  @core$_.override
+  jni$_.JObjType get superType => const jni$_.JObjectType();
+
+  @jni$_.internal
+  @core$_.override
+  jni$_.JObjType<BatteryCallback?> get nullableType =>
+      const $BatteryCallback$NullableType();
+
+  @jni$_.internal
+  @core$_.override
+  final superCount = 1;
+
+  @core$_.override
+  int get hashCode => ($BatteryCallback$Type).hashCode;
+
+  @core$_.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($BatteryCallback$Type) &&
+        other is $BatteryCallback$Type;
   }
 }
