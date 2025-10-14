@@ -15,6 +15,10 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final batteryUtils = BatteryUtils(
+    JObject.fromReference(Jni.getCachedApplicationContext()),
+  );
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,9 +28,10 @@ class _MyAppState extends State<MyApp> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Current Battery Percentage : ${BatteryUtils(JObject.fromReference(Jni.getCachedApplicationContext())).getBatteryPercentage()}',
-            ),Text(
-              'Current Battery Legacy Percentage : ${BatteryUtils(JObject.fromReference(Jni.getCachedApplicationContext())).getBatteryPercentageLegacy()}',
+              'Current Battery Percentage : ${batteryUtils.getBatteryPercentage()}',
+            ),
+            Text(
+              'Current Battery Legacy Percentage : ${batteryUtils.getBatteryPercentageLegacy()}',
             ),
           ],
         ),
